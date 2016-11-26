@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+
+	<body>
+		<div class="container">
+			<header class="head_list">
+				<a href="#">
+					<</a>
+						<span id="counts"></span>酒店列表
+			</header>
+			<div class="cal_list">
+				<p><label>入住</label><input type="hidden" id="date_in">&nbsp;&nbsp;<span id="inText">11月6日</span></p>
+				<p><label>离店</label><input type="hidden" id="date_out">&nbsp;&nbsp;<span id="outText">11月7日</span></p>
+				<h2 id="modify" data-type="list">修改</h2>
+			</div>
+			<div class="hotel-box" id="hotel_scroll">
+				<div class="scroll">
+					<img src="img/005_r2_c1.jpg" style="width: 100%;" />
+				</div>
+			</div>
+		</div>
+		<section class="item_layer" id="item_layer">
+			<div id="sort"></div>
+			<div id="price"></div>
+			<div id="bran"></div>
+			<div id="sta"></div>
+			<input type="hidden" name="order" id="order">
+			<input type="hidden" name="min" id="min">
+			<input type="hidden" name="max" id="max">
+			<input type="hidden" name="brand" id="brand">
+			<input type="hidden" name="star" id="star">
+		</section>
+		<div class="ftnav" id="ftnav">
+			<nav>
+				<a href="#sort" class="cur_item">排序</a>
+				<a href="#price">价格</a>
+				<a href="#bran">品牌</a>
+				<a href="#sta">星级</a>
+			</nav>
+		</div>
+		<script src="js/iscroll4.js"></script>
+		<script src="js/zepto.min.js"></script>
+		<script src="js/hotel.js"></script>
+		<!--<script type="text/javascript">
+			//上滑出现导航
+			function showNav() {
+				var starty, offsety;
+				var $ftnav = $('#ftnav');
+				$("#hotel_scroll").on("touchstart", function(e) {
+					starty = e.touches[0].clientY;
+				})
+				$("#hotel_scroll").on("touchmove", function(e) {
+					offsety = e.touches[0].clientY - starty;
+				})
+				$("#hotel_scroll").on("touchend", function(e) {
+					var abs_offsety = Math.abs(offsety);
+					console.log(abs_offsety)
+					if(abs_offsety > 20) {
+						if(offsety < 0) {
+							$ftnav.css({
+								"-webkit-transition": "height 0.3s linear",
+								"height": "3rem"
+							})
+						} else {
+							$ftnav.css({
+								"-webkit-transition": "height 0.3s linear",
+								"height": "0rem"
+							})
+						}
+					}
+				})
+			}
+			showNav();
+			var sort = {
+				'all': '不限',
+				'hot': '人气最高',
+				'priceMax': '价格从高到低',
+				'priceMin': '价格从低到高'
+			};
+			//渲染排序
+			function randerSort() {
+				/*var html="<ul>";
+				$.each(sort,function(i,text){
+					html+='<li>'
+							+'<a href="javascript:void(0)">'
+								+'<span onclick="checksort"></span>'
+								+'<b>'+text+'</b>'
+							+'</a>'
+						+'</li>';
+				})*/
+				var htmlArr = ["<ul>"]
+				$.each(sort, function(i, text) {
+					htmlArr.push('<li id="' + i + '">',
+						'<a href="javascript:void(0)">',
+						'<span onclick="checkSort(\'' + i + '\')"></span>',
+						'<b>' + text + '</b>',
+						'</a>',
+						'</li>')
+				})
+				htmlArr.push("</ul>")
+				$("#sort").html(htmlArr.join("")).find("li").eq(0).addClass("on")
+			}
+			randerSort();
+			//选择排序
+			function checkSort(i) {
+				var $parent = $('#' + i);
+				$parent.addClass('on').siblings().removeClass('on');
+				hideLayer();
+				var v = i === 'all' ? -1 : i;
+				$('#order').val(v);
+				//ajax请求
+				POST.sortType = $('#order').val();
+				getdateforhotel()
+			}
+
+			var price = {
+					'0': ['不限', -1, -1],
+					'1': ['0-100', 0, 100],
+					'2': ['101-200', 101, 200],
+					'3': ['201-300', 201, 300],
+					'4': ['301-400', 301, 400],
+					'5': ['401-500', 401, 500],
+					'6': ['500以上', 500, -1]
+				}
+				//渲染价格
+			function randerPrice(price) {
+				var html = "<ul>";
+				$.each(price, function(k, texts) {
+					html += '<li id="item' + k + '">' +
+						'<a href="javascript:void(0)">' +
+						'<span onclick="checkPrice(' + k + ',' + texts[1] + ',' + texts[2] + ')"></span>' +
+						'<b>' + texts[0] + '</b>' +
+						'</a>' +
+						'</li>'
+				})
+				$("#price").html(html).find("li").eq(0).addClass("on");
+			}
+			randerPrice(price);
+			//选择价格
+			function checkPrice(k, min, max) {
+				hideLayer();
+				$("#item" + k).addClass("on").siblings().removeClass("on");
+				min = min === -1 ? -100 : min * 100;
+				max = max === -1 ? -100 : max * 100;
+				$("#min").val(min);
+				$("#max").val(max);
+				POST.minPrice = $("#min").val();
+				POST.maxPrice = $("#max").val();
+				getdateforhotel()
+
+			}
+			var brand = {
+					'10': '不限',
+					'12': '喜来登',
+					'15': '如家',
+					'18': '万豪',
+					'35': '香格里拉',
+					'39': '速8',
+					'44': '莫泰168',
+					'48': '汉庭',
+					'49': '全季',
+					'50': '锦江之星',
+					'53': '里程',
+					'68': '桔子',
+					'110': '如家快捷',
+					'132': '7天',
+					'160': '布丁',
+					'168': '格林豪泰',
+					'286': '尚客优'
+				}
+				//渲染品牌
+			function randerBrand(brand) {
+				var html = "<ul>";
+				$.each(brand, function(k, texts) {
+					html += '<li id="b' + k + '">' +
+						'<a href="javascript:void(0)">' +
+						'<span onclick="checkBrand(' + k + ',\'' + texts + '\')"></span>' +
+						'<b>' + texts + '</b>' +
+						'</a>' +
+						'</li>'
+				})
+				html += '</ul>'
+				$("#bran").html(html).find("li").eq(0).addClass("on");
+			}
+			randerBrand(brand)
+				//选择品牌
+			function checkBrand(num, name) {
+				$("#b" + num).addClass("on").siblings().removeClass("on");
+				hideLayer();
+				num = num === 10 ? -1 : name;
+				$('#brand').val(num);
+				POST.brand = $('#brand').val();
+				getdateforhotel()
+			}
+			//渲染星级
+			var stars = {
+				'0': '不限',
+				'2': '二星以下/经济型',
+				'3': '三星',
+				'4': '四星',
+				'5': '五星'
+			}
+
+			function randerStar(stars) {
+				var html = "<ul>";
+				$.each(stars, function(k, texts) {
+					html += '<li id="s' + k + '">' +
+						'<a href="javascript:void(0)">' +
+						'<span onclick="checkStart(' + k + ')"></span>' +
+						'<b>' + texts + '</b>' +
+						'</a>' +
+						'</li>'
+				})
+				html += '</ul>'
+				$("#sta").html(html).find("li").eq(0).addClass("on");
+			}
+			randerStar(stars);
+
+			function checkStart(k) {
+				hideLayer();
+				$("#s" + k).addClass("on").siblings().removeClass("on");
+				k = k === 0 ? -1 : k;
+				$("#star").val(k);
+				POST.stars = $("#star").val();
+				getdateforhotel()
+			}
+			//隐藏弹层
+			function hideLayer() {
+				setTimeout(function() {
+					$('#item_layer').css({
+						'-webkit-transition': 'height 0.3s linear',
+						'height': '0'
+					})
+					common.hidemark();
+				}, 100)
+			}
+		</script>-->
+
+	</body>
+
+</html>

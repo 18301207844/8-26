@@ -1,0 +1,215 @@
+.ui-slideup-wrap {
+	position: absolute;
+	left: 0;
+	z-index: 1200;
+	width: 100%;
+	background: rgba(0,0,0,0.4);
+	overflow: hidden;
+	-webkit-tap-highlight-color: rgba(255,255,255,0);
+	-webkit-transform: translateZ(0);
+}			
+
+.header{
+    background: #EBEFF2;
+    height: 100%;
+    line-height: 44px;
+    width: 100%;
+    color: #000000;
+    width: 100%;
+    overflow:hidden; 
+    text-align: center;
+}
+
+.overScreen{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+}
+table{
+    border-spacing: 0px;
+}
+.calenderbox{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1000;
+}
+
+div.calenderbox{
+    top:0px !important;
+}
+.calender{
+    width: 100%;
+    background: #ffffff;
+    /*position: absolute;*/
+    position: fixed;
+    z-index: 10001;
+    top: 100%;
+    /*bottom: 0px;*/
+}
+.ui-slideup .header{
+position:relative
+	text-align:center;
+    display: table;
+	font-size:18px;
+	background:#fff
+}
+.ui-slideup .header span{
+position:absolute;
+    display: table-cell;
+    font-size: 15px;
+    color: #177ee6; 
+}
+
+
+.ui-slideup .header span:first-child{
+	position:absolute;
+	display:block;
+    width: 10px;
+     height: 17px;
+	 left:15px;
+      top:14px;
+     background:#00f url(../img/btn_top_nav_back.png) no-repeat;
+}
+.ui-slideup .header span:last-child{
+	position:absolute;
+	right:10px;
+	top:0px;
+}
+.shadow{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    opacity: 0.4;
+    z-index: 1000;
+    background: #000000;
+}
+
+.ui-slideup{
+    background: #fff;
+}
+.title{ height:27px;
+		font-size:1rem;
+        line-height:27px;
+		color:#999;
+		text-align:center;
+		background:#f5f6f5;
+		border-bottom:1px solid #dbdde3;
+		border-top:1px solid #dbdde3;
+        text-align:center;
+}
+.ui-calendar-header{
+    width: 100%;
+    display: table;
+    height: 40px;
+}
+.ui-calendar-prev, .ui-calendar-next{
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: #ffffff;
+    width: 14%;
+    background-repeat: no-repeat;
+    background-size: 7px 12px;
+}
+.ui-calendar-prev{
+    background-image: url('../img/calendar_left.png');
+    background-position: 18px center; 
+}
+
+.ui-calendar-next{
+    background-image: url('../img/calendar_right.png');
+    background-position: 25px center; 
+}
+
+.ui-calendar-title{
+    display: table-cell;
+    text-align: center;
+    font-weight: normal;
+    vertical-align: middle;
+    font-size: 15px;
+    color: #333;
+    width: 62%;
+}
+
+.ui-calendar-calendar{
+    width: 100%;
+}
+
+
+.ui-calendar-calendar tr th{
+    height: 30px;
+    font-size: 11px;
+    color: #666;
+    border-bottom: 2px solid #177ee6;
+}
+
+.ui-calendar-calendar tr td, .ui-calendar-calendar tr th{
+    text-align: center;
+    vertical-align: middle;
+}
+.ui-calendar-calendar tr td{
+    color: #666;
+    font-size: 12px;
+    height: 40px;
+    border-right: 1px solid #EDEEF1;
+    border-bottom: 1px solid #EDEEF1;
+    margin: 0px;
+    padding:0px;
+}
+
+.ui-calendar-calendar tr td:nth-child(7n){
+    border-right: none;
+}
+.ui-calendar-calendar tr td a, .ui-calendar-calendar tr th span{
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+}
+tr.cui-calendar-gap td{
+    display: none;
+}
+.ui-state-default{
+    color: #000000;
+    font-size: 14px;
+}
+
+.ui-state-active, .ui-calendar-calendar tr td a:hover{
+    color: #ffffff;
+    background-color: #177ee6;
+    line-height: 45px;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.ui-calendar-calendar tr td.ui-calendar-unSelectable.ui-state-disabled .ui-state-default{
+   color:#Dbdde3;
+}
+.condition{ width: 100%;
+            background: #fff;
+            border-bottom: 1px solid #DEDDE2;
+            border-top: 1px solid #DEDDE2;
+            margin-top: 15px;
+          }
+.condition li{height: 25px;
+              line-height: 25px;
+              padding: 5px 15px;
+              font-size: 1.6em;
+              color: #333;}
+.condition li>span{ float: right; color: #999;
+                    }
+
+.choiceDay>a{ 
+              display: inline-block;
+              height: 20px;
+              width: 20px;
+              line-height: 20px;
+              color: #22ADEE;
+              text-align: center;
+
+            }
+
+.choiceDay #drop,.choiceDay #asc{ background: #23AEF1;
+                                  color: #fff}

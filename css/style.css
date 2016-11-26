@@ -1,0 +1,243 @@
+@charset "UTF-8";
+@import url("reset.css");
+html,
+body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.hoteln {
+	width: 100%;
+	height: 12%;
+	background: #fff url(../img/icon-yuan.png) no-repeat 5% center;
+	border-bottom: 1px solid #dddce1;
+}
+.hoteln span {
+	font-size: 13px;
+	color: #999999;
+	display: inline-block;
+	margin-left: 13%;
+	margin-top: 8%;
+}
+
+.head_list {
+	height: 45px;
+	width: 100%;
+	/* overflow:hidden; */
+	position: relative;
+	text-align: center;
+	color: #333;
+	line-height: 45px;
+	font-size: 18px;
+}
+
+.head_list a {
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 10px;
+	width: 48px;
+	height: 48px;
+	background: url(../img/btn_top_nav_back.png) no-repeat;
+	background-size: 50% 50%;
+	/*text-indent: -9999px;*/
+}
+
+.cal_list {
+	height: 38px;
+	background: #F5F6F5;
+	border-top: 1px solid #DBDDE3;
+	border-bottom: 1px solid #DBDDE3;
+	position: relative;
+	overflow: hidden;
+	display: -webkit-box;
+	font-size: 18px;
+	line-height: 38px;
+	padding-left: 15px;
+	color: #666;
+}
+
+.cal_list p {
+	-webkit-box-flex: 1;
+}
+
+.cal_list span {
+	font-size: 16px;
+}
+
+.cal_list h2 {
+	width: 50px;
+	height: 38px;
+	margin-right: 10px;
+	line-height: 38px;
+	color: #24AEF2;
+	font-size: 18px;
+	background: url(../img/calendar_right.png) no-repeat right center;
+	background-size: 8px 15px;
+}
+
+.ui-id-mark {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.ui-id-loading {
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -30px 0 0 -30px;
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 5px;
+}
+
+.ui-id-loading img {
+	width: 60px;
+	height: 60px;
+}
+
+.ui-dialog {
+	width: 21rem;
+	height: 10rem;
+	background: white;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -10.5rem;
+	margin-top: -7rem;
+	z-index: 2001;
+	color: #333;
+	border-radius: 5px;
+}
+
+.tipcontainer {
+	width: 90%;
+	margin: .5rem auto;
+}
+
+.tipcontainer h2 {
+	font-size: 1.3rem;
+	text-align: center;
+	height: 2rem;
+}
+
+.tipcontainer .content {
+	text-align: center;
+	line-height: 2rem;
+	height: 3rem;
+	color: #333;
+}
+
+.tipcontainer p a {
+	display: block;
+	width: 4rem;
+	height: 2rem;
+	text-align: center;
+	line-height: 2rem;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	margin: .5rem auto;
+}
+
+.scroll {
+	width: 100%;
+	position: relative;
+}
+
+.hotel_list {
+	display: -webkit-box;
+	-webkit-box-flex: 1;
+	width: 100%;
+	-webkit-box-orient: vertical;
+}
+.ftnav {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	z-index: 100;
+	background: #fff;
+	width: 100%;
+	height: 3rem;
+	overflow: hidden;
+	border-top: 1px solid #24AEF2;
+	-webkit-backface-visibility: hidden;
+}
+
+.ftnav nav {
+	display: -webkit-box;
+	-webkit-box-flex: 1;
+	width: 100%;
+	-webkit-box-orient: horizontal;
+	z-index: 10001;
+}
+
+.ftnav nav a {
+	display: block;
+	-webkit-box-flex: 1;
+	text-align: center;
+	height: 3rem;
+	line-height: 3rem;
+	border-right: 1px solid #ccc;
+	background-image: url(../img/icon-hui.png);
+	background-position: 65px center;
+	background-repeat: no-repeat;
+	background-size: 18px 18px;
+}
+
+.ftnav nav a:last-child {
+	border-right: none;
+}
+
+.ftnav nav a.cur_item {
+	border-top: 1px solid #24AEF2;
+	background-image: url(../img/icon-blue.png);
+	color: #24AEF2;
+}
+
+.item_layer {
+	width: 100%;
+	overflow: hidden;
+	height: 0px;
+	background: #fff;
+	position: absolute;
+	left: 0;
+	bottom: 3rem;
+	z-index: 1000000;
+}
+
+.item_layer div {
+	display: none;
+	overflow-y: auto;
+}
+
+.item_layer div.cur_layer {
+	display: block;
+}
+
+.item_layer div li {
+	height: 3rem;
+	line-height: 3rem;
+	border-bottom: 1px solid #ccc;
+	position: relative;
+	padding-left: 10px;
+}
+
+.item_layer div li span {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	right: 0px;
+	top: 6px;
+	background-image: url(../img/icon-active-no.png);
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+}
+
+.item_layer div li.on span {
+	background-image: url(../img/icon-active.png);
+}
